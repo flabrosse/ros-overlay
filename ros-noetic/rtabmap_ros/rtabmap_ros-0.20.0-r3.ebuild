@@ -14,6 +14,7 @@ LICENSE="BSD"
 
 KEYWORDS="~x86 ~amd64 ~arm ~arm64"
 RDEPEND="
+	ros-noetic/apriltag_ros
 	ros-noetic/class_loader
 	ros-noetic/compressed_depth_image_transport
 	ros-noetic/compressed_image_transport
@@ -38,7 +39,7 @@ RDEPEND="
 	ros-noetic/roscpp
 	ros-noetic/rosgraph_msgs
 	ros-noetic/rospy
-	ros-noetic/rtabmap
+	sci-libs/rtabmap
 	ros-noetic/rviz
 	ros-noetic/sensor_msgs
 	ros-noetic/std_msgs
@@ -53,9 +54,17 @@ DEPEND="${RDEPEND}
 	ros-noetic/catkin
 	ros-noetic/genmsg
 	ros-noetic/message_generation
-	sci-libs/pcl
+	=sci-libs/pcl-1.9.1
 "
 
 SLOT="0"
 ROS_DISTRO="noetic"
 ROS_PREFIX="opt/ros/${ROS_DISTRO}"
+
+src_prepare() {
+	cd ${P}
+	EPATCH_SOURCE="${FILESDIR}" EPATCH_SUFFIX="patch" \
+	EPATCH_FORCE="yes" epatch
+	ros-cmake_src_prepare
+}
+

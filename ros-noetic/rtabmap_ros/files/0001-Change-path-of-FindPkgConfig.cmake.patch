@@ -1,0 +1,13 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 68fc464c..91386e62 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -406,7 +406,7 @@ set_target_properties(rtabmap_point_cloud_assembler PROPERTIES OUTPUT_NAME "poin
+ IF(rviz_FOUND)
+ 
+     ## We also use Ogre for rviz plugins
+-    include($ENV{ROS_ROOT}/core/rosbuild/FindPkgConfig.cmake)
++    find_package(PkgConfig REQUIRED)
+     pkg_check_modules(OGRE OGRE)
+     include_directories( ${OGRE_INCLUDE_DIRS} )
+     link_directories( ${OGRE_LIBRARY_DIRS} )
