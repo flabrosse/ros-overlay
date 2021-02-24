@@ -1,0 +1,24 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 68fc464c..70900c94 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -42,6 +42,19 @@ FIND_PACKAGE(PCL 1.7 REQUIRED QUIET COMPONENTS common io kdtree search surface f
+ ENDIF()
+ add_definitions(${PCL_DEFINITIONS}) # To include -march=native if set
+ 
++IF(PCL_VERSION VERSION_GREATER "1.9.1")
++   #PCL>=1.10 require c++14
++   IF(NOT MSVC)
++     include(CheckCXXCompilerFlag)
++      CHECK_CXX_COMPILER_FLAG("-std=c++14" COMPILER_SUPPORTS_CXX14)
++      IF(COMPILER_SUPPORTS_CXX14)
++        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
++      ELSE()
++        message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++14 support. Please use a different C++ compiler if you want to use LOAM (set \"-DWITH_LOAM=OFF\" to build without LOAM).")
++      ENDIF()
++   ENDIF()
++ENDIF()
++
+ IF(WIN32)
+ add_compile_options(-bigobj)
+ ENDIF(WIN32)

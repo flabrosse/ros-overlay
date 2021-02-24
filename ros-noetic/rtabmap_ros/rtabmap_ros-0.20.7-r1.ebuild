@@ -1,20 +1,19 @@
-# Copyright 2020 Open Source Robotics Foundation
+# Copyright 2021 Open Source Robotics Foundation
 # Distributed under the terms of the BSD license
 
 EAPI=6
-PYTHON_COMPAT=( python{2_7,3_5,3_6} )
+PYTHON_COMPAT=( python{3_7,3_8} )
 
 inherit ros-cmake
 
 DESCRIPTION="RTAB-Map\'s ros-pkg. RTAB-Map is a RGB-D SLAM approach with real-time const[...]"
 HOMEPAGE="https://github.com/introlab/rtabmap_ros/issues"
-SRC_URI="https://github.com/introlab/${PN}-release/archive/release/noetic/${PN}/0.20.0-3.tar.gz -> ${PN}-noetic-release-${PV}.tar.gz"
+SRC_URI="https://github.com/introlab/${PN}-release/archive/release/noetic/${PN}/0.20.7-1.tar.gz -> ${PN}-noetic-release-${PV}.tar.gz"
 
 LICENSE="BSD"
 
 KEYWORDS="~x86 ~amd64 ~arm ~arm64"
 RDEPEND="
-	ros-noetic/apriltag_ros
 	ros-noetic/class_loader
 	ros-noetic/compressed_depth_image_transport
 	ros-noetic/compressed_image_transport
@@ -39,7 +38,7 @@ RDEPEND="
 	ros-noetic/roscpp
 	ros-noetic/rosgraph_msgs
 	ros-noetic/rospy
-	sci-libs/rtabmap
+	=sci-libs/rtabmap-${PV}
 	ros-noetic/rviz
 	ros-noetic/sensor_msgs
 	ros-noetic/std_msgs
@@ -54,7 +53,7 @@ DEPEND="${RDEPEND}
 	ros-noetic/catkin
 	ros-noetic/genmsg
 	ros-noetic/message_generation
-	=sci-libs/pcl-1.9.1
+	sci-libs/pcl
 "
 
 SLOT="0"
@@ -67,4 +66,3 @@ src_prepare() {
 	EPATCH_FORCE="yes" epatch
 	ros-cmake_src_prepare
 }
-

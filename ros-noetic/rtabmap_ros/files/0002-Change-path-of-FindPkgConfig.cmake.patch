@@ -1,8 +1,8 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 68fc464c..91386e62 100644
+index 68fc464c..70900c94 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -406,7 +406,7 @@ set_target_properties(rtabmap_point_cloud_assembler PROPERTIES OUTPUT_NAME "poin
+@@ -406,7 +419,7 @@ set_target_properties(rtabmap_point_cloud_assembler PROPERTIES OUTPUT_NAME "poin
  IF(rviz_FOUND)
  
      ## We also use Ogre for rviz plugins
